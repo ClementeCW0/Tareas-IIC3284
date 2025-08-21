@@ -1,0 +1,13 @@
+\newcommand{\celsius}{\text{ }^{\circ}\text{C}}
+\newcommand{\P}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\makeatletter
+\newenvironment{problema}[1]{
+    \begin{tcolorbox}[breakable, colback=white, halign title = center, fonttitle = \Large, title={Pregunta #1}]
+    }{\end{tcolorbox}}
+\makeatother 
+
+\newenvironment{solucion}{\paragraph{Solución:}}{\hfill}

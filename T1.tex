@@ -1,0 +1,56 @@
+\begin{problema}{1}
+	\begin{enumerate}[label=\arabic*.]
+		\item El siguiente enfoque se llama reservoir sampling. Supongamos que tenemos una secuencia
+de elementos pasando uno a la vez. Queremos mantener una muestra de un elemento con
+la propiedad de que está distribuida uniformemente sobre todos los elementos que hemos
+visto en cada paso. Además, queremos lograr esto sin conocer el número total de elementos
+de antemano o almacenar todos los elementos que vemos. \\
+\\
+Considere el siguiente algoritmo, que almacena solo un elemento en memoria en todo
+momento. Cuando aparece el primer elemento, se almacena en la memoria. Cuando aparece
+el $k$-ésimo elemento, reemplaza el elemento en memoria con probabilidad $1/k$. Explique
+por qué este algoritmo resuelve el problema.
+\item Sea un modelo de $m$ ítems y $n$ urnas, asignamos de forma independiente y con probabilidad uniforme $1/n$ los ítems en las urnas. Denotamos la carga de una urna $U_i$ para $i \in [n]$ como la cantidad de ítems que contiene la urna $i$ luego de la asignación de ítems.
+	\begin{enumerate}[label=\alph*)]
+		\item Calcule el valor esperado de la carga para una urna $U_i$ con $i \in [n]$.
+		\item Calcule la varianza de la carga para una urna $U_i$ con $i \in [n]$.
+		\item Para un $a > 0$, use la desigualdad de Chebishev para acotar
+			\[
+				\P[|U_i - \E[U_i]| \geq a]
+			\]
+		
+	\end{enumerate}
+	\end{enumerate}
+\end{problema}
+\begin{solucion}
+
+\end{solucion}
+
+\newpage
+\begin{problema}{2}
+	\begin{enumerate}[label=\arabic*.]
+		\item Una permutación de los números $[n] = \{1,\dots, n\}$ puede ser representada como una función $\pi : [n] \to [n]$, donde $π(i)$ es la posición de $i$ en el orden dado por la permutación. Un punto fijo de una permutación $\pi : [n] \to [n]$ es un valor para el cual $\pi(x) = x$. Encuentre el número esperado y la varianza de puntos fijos de una permutación elegida uniformemente al azar entre todas las permutaciones.
+		\item Dada una permutación aleatoria de ${1, \dots , n}, n \in \N$, sumamos los números que aparecen como \emph{left-to-right minima}. ¿Cuál es la suma esperada?
+	\end{enumerate}
+\end{problema}
+\begin{solucion}
+	
+\end{solucion}
+
+\newpage
+\begin{problema}{3}
+	Supongamos que lanzamos una moneda justa $n$ veces para obtener $n$ bits aleatorios. Consideremos todos los $m = \binom{n}{2}$ pares de estos bits en algún orden. Sea $Y_i$ la disyunción exclusiva (\emph{xor}) del $i$-ésimo par de bits, y definamos $Y = \sum^m_{i=1} Y_i$ como el número de $Y_i$ que son iguales a 1. \emph{Disyunción exclusiva: Dados dos bits a, b ∈ {0, 1}, definimos la disyunción exclusiva (xor) como}
+	\[
+		a \oplus b = \begin{cases}
+			0 & \text{\emph{ si $a=b$}} \\
+			1 & \text{\emph{ si $a\neq b}}
+		\end{cases}
+	\]
+	\emph{Es decir, el resultado es 1 únicamente cuando exactamente uno de los dos bits vale 1.}
+	\begin{enumerate}[label=\alph*)]
+		\item Muestre que cada $Y_i$ es $0$ con probabilidad $1/2$ y $1$ con probabilidad $1/2$.
+		\item Muestre que los $Y_i$ no son mutuamente independientes.
+		\item Muestre que los $Y_i$ satisfacen la propiedad $\E[Y_iY_j]=\E[Y_i]\E[Y_j]$.
+		\item Calcule Var[$Y$]. \emph{Use que si $\forall 1 \leq i < j \leq n \ Y_i, Y_j
+	\end{enumerate}
+\end{problema}
