@@ -16,20 +16,45 @@ por qué este algoritmo resuelve el problema.
 		\item Calcule la varianza de la carga para una urna $U_i$ con $i \in [n]$.
 		\item Para un $a > 0$, use la desigualdad de Chebishev para acotar
 			\[
-				\P[|U_i - \E[U_i]| \geq a]
+				\PP[|U_i - \E[U_i]| \geq a]
 			\]
 		
 	\end{enumerate}
 	\end{enumerate}
 \end{problema}
 \begin{solucion}
-
+	\begin{enumerate}[label=\arabic*.]
+		\item Dado el espacio muestral $\Omega = \conj{\omega_1, \dots, \omega_n}$, definimos las variables aleatorias
+			\[
+				X_k = \text{Elemento de $\Omega$ en la memoria en la $k$-ésima observación}
+			\]
+		Entonces, por definición,
+		\begin{align*}
+			\PP(X_k = \omega_k) = \frac{1}{k} && \text{y} && \PP(X_k = \omega_i) = 0 \ \forall i > k
+		\end{align*}
+		Ahora, dado un $k$ fijo, basta demostrar que para todo $i\leq k$ se cumple que
+			\[
+				\PP(X_k = \omega_i) = \frac{1}{k}
+			\]
+		Para ver esto, notamos que para el evento $\conj{X_k = \omega_i}$ no importan las probabilidades de que $\PP(X_j = \omega_j)$ para$j<i$, solo importa que se haya almacenado $\omega_i$ en el $i$-ésimo paso y no se haya almacenado ningún elemento nuevo hasta el $k$-ésimo paso. Por esto, se cumplirá que
+			\begin{align*}
+				\PP(X_k = \omega_i) &= \PP(X_i = \omega_i)\prod_{j=i+1}^{k}\PP(X_j \neq \omega_j) \\
+						    &= \frac{1}{i}\prod_{j=i+1}^{k}\pa{1-\frac{1}{j}} \\
+						    &= \frac{1}{i}\prod_{j=i+1}^{k}\pa{\frac{j-1}{j}} \\
+						    &= \frac{1}{i}\frac{\prod_{j=i+1}^{k}(j-1)}{\prod_{j=i+1}^{k}j} \\
+						    &= \frac{1}{i}\frac{\prod_{j=i}^{k-1}j}{\prod_{j=i+1}^{k}j} \\
+						    &= \frac{1}{i}\frac{i\pa{\prod_{j=i+1}^{k-1}j}}{k\pa{\prod_{j=i+1}^{k-1}j}} \\
+						    &= \frac{1}{k}
+			\end{align*}
+			Por lo tanto, efectivamente las variables $X_i$ modelan una muestra de un elemento que tiene probabilidad uniforme con respecto a los elementos ya observados.
+		\item
+	\end{enumerate}
 \end{solucion}
 
 \newpage
 \begin{problema}{2}
 	\begin{enumerate}[label=\arabic*.]
-		\item Una permutación de los números $[n] = \{1,\dots, n\}$ puede ser representada como una función $\pi : [n] \to [n]$, donde $π(i)$ es la posición de $i$ en el orden dado por la permutación. Un punto fijo de una permutación $\pi : [n] \to [n]$ es un valor para el cual $\pi(x) = x$. Encuentre el número esperado y la varianza de puntos fijos de una permutación elegida uniformemente al azar entre todas las permutaciones.
+		\item Una permutación de los números $[n] = \{1,\dots, n\}$ puede ser representada como una función $\pi : [n] \to [n]$, donde $\pi(i)$ es la posición de $i$ en el orden dado por la permutación. Un punto fijo de una permutación $\pi : [n] \to [n]$ es un valor para el cual $\pi(x) = x$. Encuentre el número esperado y la varianza de puntos fijos de una permutación elegida uniformemente al azar entre todas las permutaciones.
 		\item Dada una permutación aleatoria de ${1, \dots , n}, n \in \N$, sumamos los números que aparecen como \emph{left-to-right minima}. ¿Cuál es la suma esperada?
 	\end{enumerate}
 \end{problema}
@@ -43,7 +68,7 @@ por qué este algoritmo resuelve el problema.
 	\[
 		a \oplus b = \begin{cases}
 			0 & \text{\emph{ si $a=b$}} \\
-			1 & \text{\emph{ si $a\neq b}}
+			1 & \text{\emph{ si $a\neq b$}}
 		\end{cases}
 	\]
 	\emph{Es decir, el resultado es 1 únicamente cuando exactamente uno de los dos bits vale 1.}
@@ -51,6 +76,9 @@ por qué este algoritmo resuelve el problema.
 		\item Muestre que cada $Y_i$ es $0$ con probabilidad $1/2$ y $1$ con probabilidad $1/2$.
 		\item Muestre que los $Y_i$ no son mutuamente independientes.
 		\item Muestre que los $Y_i$ satisfacen la propiedad $\E[Y_iY_j]=\E[Y_i]\E[Y_j]$.
-		\item Calcule Var[$Y$]. \emph{Use que si $\forall 1 \leq i < j \leq n \ Y_i, Y_j
+		\item Calcule Var[$Y$]. \emph{Use que si $\forall 1 \leq i < j \leq n \ Y_i, Y_j$}
 	\end{enumerate}
 \end{problema}
+\begin{solucion}
+	
+\end{solucion}
