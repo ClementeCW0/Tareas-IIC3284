@@ -14,7 +14,7 @@ por qué este algoritmo resuelve el problema.
 	\begin{enumerate}[label=\alph*)]
 		\item Calcule el valor esperado de la carga para una urna $U_i$ con $i \in [n]$.
 		\item Calcule la varianza de la carga para una urna $U_i$ con $i \in [n]$.
-		\item Para un $a > 0$, use la desigualdad de Chebishev para acotar
+		\item Para un $a > 0$, use la desigualdad de Chebyshev para acotar
 			\[
 				\PP[|U_i - \E[U_i]| \geq a]
 			\]
@@ -47,7 +47,54 @@ por qué este algoritmo resuelve el problema.
 						    &= \frac{1}{k}
 			\end{align*}
 			Por lo tanto, efectivamente las variables $X_i$ modelan una muestra de un elemento que tiene probabilidad uniforme con respecto a los elementos ya observados.
-		\item
+		\item Para cada $j=1,\dots,m$ e $i=1,\dots,n$, definimos las variables aleatorias
+			\[
+				X_{ji}= \begin{cases}
+					1 & \text{Si el ítem $j$ es asignado a la urna $i$} \\
+					0 & \text{si no}
+				\end{cases}
+			\]
+			De esta forma, para todo $i=1,\dots,n$ se cumple
+			\[
+				U_i = \sum_{j=1}^m X_{ji}
+			\]
+			\begin{enumerate}[label=\alph*)]
+				\item La esperanza de las variables $X_{ji}$ viene dada por
+					\[
+						\E(X_{ji}) = 1\cdot\PP(X_{ji} = 1) + 0\cdot\PP(X_{ji} = 0) = \frac{1}{n}
+					\]
+					Por lo tanto, 
+					\begin{align*}
+						\E(U_i) &= \E\pa{\sum_{j=1}^mX_{ji}} \\
+						        &= \sum_{j=1}^m\E(X_{ji}) \\
+							&= \sum_{j=1}^m\frac{1}{n} \\
+							&= \frac{m}{n}
+					\end{align*}
+				\item Ya que $X_{ji}^2 = X_{ji}$ en todos los valores de su recorrido ($0$ y $1$), la varianza de las variables $X_{ji}$ viene dada por
+					\begin{align*}
+						\Var(X_{ji}) &= \E(X_{ji}^2) - \E(X_{ji})^2\\
+						             &= \E(X_{ji}) - \frac{1}{n^2} \\
+							     &= \frac{1}{n} - \frac{1}{n^2} \\
+							     &= \frac{n-1}{n^2}
+					\end{align*}
+					Por lo tanto,
+					\begin{align*}
+						\Var(U_i) &= \Var\pa{\sum_{j=1}^mX_{ji}} \\
+						          &= \sum_{j=1}^m\Var(X_{ji}) \\
+							  &= \sum_{j=1}^m\frac{n-1}{n^2} \\
+							  &= \frac{m(n-1)}{n^2}
+					\end{align*}
+				\item Si juntamos los resultados anteriores en la desigualdad de Chebyshev, obtenemos que para todo $\lambda > 0$
+					\begin{align*}
+						&\PP\pa{|U_i - \E(U_i)| \geq \lambda \sqrt{\Var(U_i)}} \leq \frac{1}{\lambda^2} \\
+						\iff& \PP\pa{\abs{U_i - \frac{m}{n}} \geq \lambda\frac{\sqrt{m(n-1)}}{n}} \leq \frac{1}{\lambda^2}
+					\end{align*}
+					En particular, si $a > 0$ y hay más de una urna, entonces $\lambda = \frac{a}{\sqrt{\Var(U_i)}} > 0$, por lo tanto
+					\begin{align*}
+						\PP\pa{\abs{U_i - \frac{m}{n}} \geq a} \leq \frac{m(n-1)}{a^2n^2}
+					\end{align*}
+				
+
 	\end{enumerate}
 \end{solucion}
 
@@ -55,7 +102,7 @@ por qué este algoritmo resuelve el problema.
 \begin{problema}{2}
 	\begin{enumerate}[label=\arabic*.]
 		\item Una permutación de los números $[n] = \{1,\dots, n\}$ puede ser representada como una función $\pi : [n] \to [n]$, donde $\pi(i)$ es la posición de $i$ en el orden dado por la permutación. Un punto fijo de una permutación $\pi : [n] \to [n]$ es un valor para el cual $\pi(x) = x$. Encuentre el número esperado y la varianza de puntos fijos de una permutación elegida uniformemente al azar entre todas las permutaciones.
-		\item Dada una permutación aleatoria de ${1, \dots , n}, n \in \N$, sumamos los números que aparecen como \emph{left-to-right minima}. ¿Cuál es la suma esperada?
+		\item Dada una permutación aleatoria de ${1, \dots , n} \in \N$, sumamos los números que aparecen como \emph{left-to-right minima}. ¿Cuál es la suma esperada?
 	\end{enumerate}
 \end{problema}
 \begin{solucion}
@@ -77,6 +124,10 @@ por qué este algoritmo resuelve el problema.
 		\item Muestre que los $Y_i$ no son mutuamente independientes.
 		\item Muestre que los $Y_i$ satisfacen la propiedad $\E[Y_iY_j]=\E[Y_i]\E[Y_j]$.
 		\item Calcule Var[$Y$]. \emph{Use que si $\forall 1 \leq i < j \leq n \ Y_i, Y_j$}
+		\item Usando la desigualdad de Chebyshev, pruebe una cota para
+			\[
+				\PP[|Y-\E[Y]|\geq n]
+			\]
 	\end{enumerate}
 \end{problema}
 \begin{solucion}
