@@ -1,32 +1,97 @@
 \begin{problema}{1}
 Para percolación por aristas en un grafo, definimos
 \begin{align*}
-	\theta(p) := \PP_p(0 \leftrightarrow \infty) &&
-	p_c :=
+	\theta(p) := \PP_p(0 \leftrightarrow \infty), &&
+	p_c := \inf\conj{p\in[0,1]:\theta(p) > 0}
 \end{align*}
+donde $0\leftrightarrow\infty$ es el evento tal que el vértice origen está conectado a una cantidad infinita de vértices a través de aristas abiertas.
 	
 \begin{enumerate}[label=\alph*)]
-\item
-\item
-\item
+	\item Demuestre que $p_c(\Z) = 1$ y que $p_c(\Z\times\conj{0,\dots,n}) = 1$ para todo $n\in\N$ 
+	\item Demuestre que $p_c(d)\leq\frac{3}{4}$ para todo $d\geq2$. Donde $p_c(d)$ es la percolación crítica en $\Z^d$.
+	\item Definimos percolación por sitios sobre un grafo si cada vértice $v\in V$ se declara abierto, de forma independiente, con probabilidad $p$. Decimos que $x,y\in V$ están conectados ($x\leftrightarrow y$) si ambos vértices estan en la misma componente conexa inducida por los vértices abiertos, i.e. existe una secuencia $x=v_1,v_2,\dots,v_k=y$ tal que la distancia entre vértices consecutivos es 1. \\
+	\\
+	Muestre que la percolación por aristas en un grafo corresponde a una percolación por sitios en un grafo modificado. Demuestre que
+		\[
+			p_c(\text{arista}) \leq p_c(\text{nodo}) \leq 1 - (1 - p_c(\text{arista}))^d
+		\]
+		donde $d$ es el grado del grafo, $p_c(\text{arista})$ es $p_c$ y $p_c(\text{nodo})$ es la percolación crítica por sitios, ambas percolaciones sobre el mismo grafo.
 \end{enumerate}
 \end{problema}
 
 \begin{solucion}
 
 \begin{enumerate}[label=\alph*)]
-	\item Notamos que en este contexto, los conjuntos $\Z$ y $\Z\times \{0\}$ son equivalentes, por lo tanto, 
-	\item
+	\item Notamos que en este contexto, los conjuntos $\Z$ y $\Z\times \{0\}$ son equivalentes, por lo tanto, demostrar el resultado para $\Z\times \{0,\dots,n\}$ implica el resultado para $\Z$. Además, notamos que
+		\[
+			0 \leftrightarrow \infty = -\infty \leftarrow 0 \cup 0\rightarrow \infty
+		\]
+		Donde $-\infty \leftarrow 0$ y $0\rightarrow\infty$ son los eventos tales que existe un camino camino que va infinitamente a la izquierda y a la derecha respectivamente. Demostraremos que si $p < 1$, entonces $\PP(0\rightarrow\infty) = 0$. La demostración para $-\infty \leftarrow 0$ es análoga.
+
+	Dado un $m \in \Z$, consideremos el evento
+		\[
+			E_m = \conj{\text{La columna $m$ está conectada a la columna $m + 1$}}
+		\]
+	Entonces, dado que en un camino que conecta al origen con el infinito a la derecha conecta al origen con la columna $m$,
+		\[
+			0\rightarrow \infty\subseteq\bigcap^{m}_{k=0}E_k  
+		\]
+
+		Notamos ahora que la probabilidad de los eventos $E_k$ corresponde a la probabilidad de que alguno de las aristas entre $k$ y $k+1$. Este evento es el complemento del evento de que todas las aristas estén cerradas, y dado que este evento tiene probabilidad $(1-p)^{n+1}$,
+		\[
+			\PP(E_m) = 1-(1-p)^{n+1} = q
+		\]
+		Este valor es constante en $m$ y dado que escogimos $p<1$, estará en (0,1).
+
+		Ahora notamos que los eventos $E_k$ son independientes, por lo tanto,
+		\begin{align*}
+			\PP(0\rightarrow \infty) &\leq \PP\pa{\bigcap^{m}_{k=0}E_k} \\
+			&=\prod_{k=0}^{m}\PP(E_k) \\
+			&= q^{m+1}
+		\end{align*}
+		Dado que esta cota se cumple para todo $m \in \N$ y $q < 1$ concluimos que $\PP(0\rightarrow\infty) = 0$. Dado que la demostración para $-\infty\leftarrow0$ es equivalente, obtenemos que
+		\begin{align*}
+			\PP(0 \leftrightarrow \infty) &=\PP( -\infty \leftarrow 0 \cup 0\rightarrow \infty) \\
+			&\leq\PP( -\infty \leftarrow 0) + \PP( 0\rightarrow \infty) \\
+			&= 0
+		\end{align*}
+		Por lo tanto, $\PP(0 \leftrightarrow \infty) = 0$. Dado que el valor de $p<1$ fue escogido arbitrariamente, concluimos que $p_c(\Z\times\{0,\dots,n\}) = 1$.
+
+	\item Para demostrar esta cota para cualquier $d \in \N$, notamos que basta demostrarla para $d=2$, pues dado un $d>2$, notamos que el evento $\{0\leftrightarrow\infty\}_2$ definido en el subconjunto $\Z^2\times\{0\}^{d-2}$ está contenido en el evento $0\leftrightarrow\infty$, por lo tanto
+		\[
+			\PP(\{0\leftrightarrow\infty\}_2) = \theta_2(p) \leq \PP(0\leftrightarrow\infty) = \theta(p)
+		\]
+		Por lo tanto, si la probabilidad $\PP(\{0\leftrightarrow\infty\}_2)$ es estricatamente positiva, también lo será la de $\PP(0\leftrightarrow\infty$). Por lo tanto, $p_c(d) \leq p_c(2)$ para todo $d\geq2$. \\
+		\\
+		Ahora, para demostrar el caso de $d=2$, consideraremos el 
 	\item
 	
 \end{enumerate}
 
 \end{solucion}
 
-\begin{problema}{2}
-	
 \newpage
+\begin{problema}{2}
+	Sea $G(V,E) \sim G(n,p)$ un grafo de $|V| = n$	nodos donde cada arista de las $\binom{n}{2}$ se incluye de manera independiente con probabilidad $p$ en $E$ (grafo aleatorio de Erdös-Rényi). Para cada nodo $v\in V$ denotamos al grado de $v$ como $d(v) = \abs{\conj{u\in V: \conj{u,v} \in E}}$, es decir, el número de aristas que inciden en $v$.
+	\begin{enumerate}[label=\alph*)]
+		\item Argumente que $d(v)$ sigue una distribución binomial con parámetros $n-1$ y $p$. ¿Cuál es su esperanza y varianza? Luego, para $v \in V$ denote $\mu = \E[d(v)]$, demuestre que para todo $\varepsilon \in (0,1)$ y todo nodo fijo $v$,
+			\[
+				\PP[\abs{d(v) - \mu} \geq \varepsilon\mu] \leq 2\exp\pa{-\frac{\varepsilon^2}{3}\mu}
+			\]
+		\item Sea $\delta \in (0,1)$, deduzca del resultado anterior que si
+			\[
+				\mu \geq \frac{3}{\varepsilon^2}\ln\frac{2n}{\delta}
+			\]
+			entonces con probabilidad al menos $1-\delta$ se cumple simultáneamente
+			\[
+				(1-\varepsilon)\mu < d(v) < (1+\varepsilon)\mu
+			\]
+			explique con sus palabras qué significa este resultado.
+	\end{enumerate}
 \end{problema}
 \begin{solucion}
-	Hola
+	\begin{enumerate}[label=\alph*)]
+		\item
+		\item
+	\end{enumerate}
 \end{solucion}
